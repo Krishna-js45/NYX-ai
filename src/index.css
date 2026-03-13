@@ -1,0 +1,200 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base Reset ─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --violet: #6B21FF;
+  --violet-light: #8B3FFF;
+  --cyan: #00FFD1;
+  --black: #000000;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: #000000;
+  color: #e0e0f0;
+  font-family: 'DM Mono', monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Custom Scrollbar ─────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(107, 33, 255, 0.4);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(107, 33, 255, 0.7);
+}
+
+/* ── Glassmorphism Utility ────────────────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.glass-violet {
+  background: rgba(107, 33, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(107, 33, 255, 0.2);
+}
+
+/* ── Glow Effects ─────────────────────────────────────── */
+.glow-violet {
+  box-shadow: 0 0 20px rgba(107, 33, 255, 0.6), 0 0 60px rgba(107, 33, 255, 0.2);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 16px rgba(0, 255, 209, 0.5);
+}
+
+.text-glow-violet {
+  text-shadow: 0 0 20px rgba(107, 33, 255, 0.8), 0 0 40px rgba(107, 33, 255, 0.4);
+}
+
+.text-glow-cyan {
+  text-shadow: 0 0 12px rgba(0, 255, 209, 0.7);
+}
+
+/* ── Grid Background Pattern ──────────────────────────── */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(107, 33, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(107, 33, 255, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Animated Gradient Border ─────────────────────────── */
+.gradient-border {
+  position: relative;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(107,33,255,0.8), rgba(0,255,209,0.4), rgba(107,33,255,0.2));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ── Typing Indicator Dots ────────────────────────────── */
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #6B21FF;
+  animation: typing-bounce 1.4s ease-in-out infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-7px); opacity: 1; }
+}
+
+/* ── NYX Orb ──────────────────────────────────────────── */
+.nyx-orb {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #9B51FF, #6B21FF 50%, #3B0099);
+  box-shadow:
+    0 0 16px rgba(107,33,255,0.9),
+    0 0 40px rgba(107,33,255,0.5),
+    0 0 80px rgba(107,33,255,0.2),
+    inset 0 0 12px rgba(255,255,255,0.15);
+  animation: orb-pulse 3s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.nyx-orb-lg {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #A855F7, #6B21FF 50%, #3B0099);
+  box-shadow:
+    0 0 28px rgba(107,33,255,1),
+    0 0 70px rgba(107,33,255,0.6),
+    0 0 120px rgba(107,33,255,0.25),
+    inset 0 0 20px rgba(255,255,255,0.2);
+  animation: orb-pulse 3s ease-in-out infinite, float 6s ease-in-out infinite;
+}
+
+@keyframes orb-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 16px rgba(107,33,255,0.9),
+      0 0 40px rgba(107,33,255,0.5),
+      0 0 80px rgba(107,33,255,0.2),
+      inset 0 0 12px rgba(255,255,255,0.15);
+  }
+  50% {
+    box-shadow:
+      0 0 28px rgba(107,33,255,1),
+      0 0 70px rgba(107,33,255,0.7),
+      0 0 120px rgba(107,33,255,0.35),
+      inset 0 0 20px rgba(255,255,255,0.25);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ── Shimmer loading ──────────────────────────────────── */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.03) 0%,
+    rgba(107,33,255,0.15) 50%,
+    rgba(255,255,255,0.03) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer-move 2.5s linear infinite;
+}
+
+@keyframes shimmer-move {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ── Input focus ring ─────────────────────────────────── */
+.input-violet:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(107,33,255,0.6), 0 0 20px rgba(107,33,255,0.25);
+}
+
+/* ── Code block prism override ────────────────────────── */
+.code-block pre {
+  border-radius: 10px !important;
+  font-family: 'DM Mono', monospace !important;
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+}
